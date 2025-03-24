@@ -28,6 +28,35 @@ header h1 {
   margin-bottom: 10px;
 }
 
+nav {
+  background-color: #1a237e;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+nav ul li a:hover {
+  color: #ffeb3b;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -71,6 +100,23 @@ section h3 {
 }
 
 .activity-card p {
+  margin-bottom: 8px;
+}
+
+.participant-info {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.participant-info h4 {
+  margin-bottom: 10px;
+  color: #0066cc;
+}
+
+.participant-info p {
   margin-bottom: 8px;
 }
 
@@ -141,4 +187,7 @@ footer {
   margin-top: 30px;
   padding: 20px;
   color: #666;
+  background-color: #1a237e;
+  color: white;
+  border-radius: 5px;
 }

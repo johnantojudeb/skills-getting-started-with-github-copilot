@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const activitySelect = document.getElementById("activity");
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
+  const participantInfoContainer = document.getElementById("participant-info-container");
+  const participantInfo = document.getElementById("participant-info");
 
   // Function to fetch activities from API
   async function fetchActivities() {
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <p><strong>Participants:</strong> ${details.participants.join(", ")}</p>
         `;
 
         activitiesList.appendChild(activityCard);
@@ -38,6 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
       console.error("Error fetching activities:", error);
+    }
+  }
+
+  // Function to fetch participant info
+  async function fetchParticipantInfo(email) {
+    try {
+      const response = await fetch(`/participants/${encodeURIComponent(email)}`);
+      const participant = await response.json();
+
+      participantInfo.innerHTML = `
+        <h4>${participant.name}</h4>
+        <p><strong>Email:</strong> ${participant.email}</p>
+        <p><strong>Activities:</strong> ${participant.activities.join(", ")}</p>
+      `;
+
+      participantInfoContainer.classList.remove("hidden");
+    } catch (error) {
+      participantInfo.innerHTML = "<p>Failed to load participant info. Please try again later.</p>";
+      console.error("Error fetching participant info:", error);
     }
   }
 
@@ -62,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.textContent = result.message;
         messageDiv.className = "success";
         signupForm.reset();
+        fetchParticipantInfo(email);
       } else {
         messageDiv.textContent = result.detail || "An error occurred";
         messageDiv.className = "error";
