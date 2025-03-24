@@ -103,6 +103,23 @@ section h3 {
   margin-bottom: 8px;
 }
 
+.participant-info {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.participant-info h4 {
+  margin-bottom: 10px;
+  color: #0066cc;
+}
+
+.participant-info p {
+  margin-bottom: 8px;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
